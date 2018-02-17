@@ -1,77 +1,77 @@
-
 <!DOCTYPE html>
-  <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>TMDb</title>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
 
-        <link rel="stylesheet"  href="main.css">
-
-    </head>
-
-    <body>
-        <h1>The Movie Database Search</h1>
-        <p>TMDb API</p>
-
-        <section>
-            <form id="movie-form"  method="post">
-                <label for="search">Search</label>
-                <input type="text" placeholder="search for a movie..." id="searchTerm" name="search">
-                <button id="btn-search" type="submit" name="button" value="click">Search Movies</button>
-                <button id="btn-search-close" type="button" name="button">Close</button>
-            </form>
-
-            <div id="insert-search">
-
-        </section>
-
-        <section>
-            <label for="search">Popular</label>
-            <button id="btn-popular" type="button" name="button">Popular</button>
-            <button id="btn-popular-close" type="button" name="button">Close</button>
-
-            <!-- https://api.themoviedb.org/3/movie/popular?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1 -->
-
-            <div id="insert-popular">
-
-        </section>
-
-        <section>
-            <label for="search">Top Rated</label>
-            <button id="btn-toprated" type="button" name="button">Top Rated</button>
-            <button id="btn-toprated-close" type="button" name="button">Close</button>
-
-            <!-- https://api.themoviedb.org/3/movie/top_rated?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1 -->
-
-            <div id="insert-toprated">
-
-        </section>
-
-        <section>
-            <label for="search">Upcoming</label>
-            <button id="btn-upcoming" type="button" name="button">Upcoming</button>
-            <button id="btn-upcoming-close" type="button" name="button">Close</button>
-
-            <!-- https://api.themoviedb.org/3/movie/upcoming?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1 -->
-
-            <div id="insert-upcoming">
-
-        </section>
-
-        <section>
-            <label for="search">Now Playing</label>
-            <button id="btn-nowplaying" type="button" name="button">NOW PLAYING</button>
-            <button id="btn-nowplaying-close" type="button" name="button">Close</button>
-
-            <div id="insert-nowplaying">
-
-        </section>
+  <title>TMDb</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <h1>The Movie Database Search</h1>
 
 
+  <p>TMDb API</p>
 
 
-        </div>
+  <section>
+    <form id="movie-form" method="post" name="movie-form">
+      <label for="search">Search</label> <input type="text" placeholder=
+      "search for a movie..." id="searchTerm" name="search"> <button id=
+      "btn-search" type="submit" name="button" value="click">Search
+      Movies</button> <button id="btn-search-close" type="button" name=
+      "button">Close</button>
+    </form>
 
-        <script type="text/javascript" src="main.js"></script>
-    </body>
-  </html>
+
+    <div id="insert-search">
+    </div>
+  </section>
+
+
+  <section>
+    <label for="search">Popular</label> <button id="btn-popular" type="button"
+    name="button">Popular</button> <button id="btn-popular-close" type="button"
+    name="button">Close</button> 
+    <!-- https://api.themoviedb.org/3/movie/popular?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1 -->
+
+
+    <div id="insert-popular">
+    </div>
+  </section>
+
+
+  <section>
+    <label for="search">Top Rated</label> <button id="btn-toprated" type=
+    "button" name="button">Top Rated</button> <button id="btn-toprated-close"
+    type="button" name="button">Close</button> 
+    <!-- https://api.themoviedb.org/3/movie/top_rated?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1 -->
+
+
+    <div id="insert-toprated">
+    </div>
+  </section>
+
+
+  <section>
+    <label for="search">Upcoming</label> <button id="btn-upcoming" type=
+    "button" name="button">Upcoming</button> <button id="btn-upcoming-close"
+    type="button" name="button">Close</button> 
+    <!-- https://api.themoviedb.org/3/movie/upcoming?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1 -->
+
+
+    <div id="insert-upcoming">
+    </div>
+  </section>
+
+
+  <section>
+    <label for="search">Now Playing</label> <button id="btn-nowplaying" type=
+    "button" name="button">NOW PLAYING</button> <button id=
+    "btn-nowplaying-close" type="button" name="button">Close</button>
+
+    <div id="insert-nowplaying">
+    </div>
+  </section>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
