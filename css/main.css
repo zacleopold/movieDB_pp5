@@ -1,35 +1,63 @@
-#insert-popular{
+body {
+    display: flex;
+    flex-flow: column nowrap;
+
+
+}
+
+#searchTerm {
+
+height:40px;
+  width: 400px;
+  font-size:20px;
+
+  padding-left:5px;
+
+}
+
+#btn-search {
+
+    visibility: hidden;
+}
+#search {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#modules{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#insert-content{
     display:flex;
     flex-flow: row wrap;
 
 }
 
-#insert-toprated{
-    display:flex;
-    flex-flow: row wrap;
-
+button {
+    display:block;
+    width:150px;
+    height:150px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+	margin:0 10px 10px 0;
+	padding:10px 21px;
+	text-transform:uppercase;
+	font-family:'Arial';
+	font-weight:400;
+	font-size:16px;
+    text-transform: uppercase;
+	color:white; /*#3e3e3e;*/
+	background:#53b7e8; /*#7cb289;*/
+	border-bottom:1px solid #343434;
+	transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-webkit-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+    float: left;
 }
-
-
-#insert-upcoming{
-    display:flex;
-    flex-flow: row wrap;
-
-}
-
-
-#insert-nowplaying{
-    display:flex;
-    flex-flow: row wrap;
-
-}
-
-#insert-search{
-    display:flex;
-    flex-flow: row wrap;
-
-}
-
 
 
 article {

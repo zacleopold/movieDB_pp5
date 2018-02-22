@@ -15,10 +15,10 @@ document.getElementById('movie-form').onsubmit = function(){
 
 let searchTerm
 let searchUrl
-let popularUrl
-let topratedUrl
-let upcomingUrl
-let nowPlayingUrl
+let popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
+let topratedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
+let upcomingUrl = "https://api.themoviedb.org/3/movie/upcoming?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
+let nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
 
 
 //SEARCH
@@ -26,9 +26,7 @@ document.getElementById('btn-search').addEventListener('click', function(){
 
     searchTerm = document.getElementById('searchTerm').value
     searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&query="+ searchTerm +"&page=1&include_adult=false"
-    //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg (poster path example)
 
-    console.log(searchUrl)
     fetch(searchUrl, {
         method: 'get'
     })
@@ -48,12 +46,13 @@ document.getElementById('btn-search').addEventListener('click', function(){
             insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
             insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
             insert += "<p>"+responseAsJson.results[i].overview+"</p>"
+            insert += '<button onclick="modalFunction('+responseAsJson.results[i].id+')">View More</button>'
             insert += "</article>"
 
         }
 
 
-        let insertDiv = document.getElementById('insert-search')
+        let insertDiv = document.getElementById('insert-content')
         insertDiv.innerHTML = insert
     }
     )
@@ -62,30 +61,18 @@ document.getElementById('btn-search').addEventListener('click', function(){
         console.log(err)
         let insert=""
         insert += "<h2>No search results for your term. Please Try Again</h2>"
-        let insertDiv = document.getElementById('insert-search')
+        let insertDiv = document.getElementById('insert-content')
         insertDiv.innerHTML = insert
     })
 
     document.getElementById('searchTerm').value = ""
 })
 
-//CLOSE SEARCH
-document.getElementById('btn-search-close').addEventListener('click', function(){
-    let insert =""
-    let insertDiv = document.getElementById('insert-search')
-    insertDiv.innerHTML = insert
-})
 
 
-//POPULAR
-document.getElementById('btn-popular').addEventListener('click', function(){
+function fetchURL (url) {
 
-    //search = document.getElementById('searchTerm').value
-    popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
-    //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg (poster path example)
-
-    console.log(popularUrl)
-    fetch(popularUrl, {
+    fetch(url, {
         method: 'get'
     })
 
@@ -93,23 +80,23 @@ document.getElementById('btn-popular').addEventListener('click', function(){
 
     .then (responseAsJson =>	 {
 
-
-        console.log(responseAsJson)
-
         let insert =""
 
         for(var i = 0; i < responseAsJson.results.length ; i++){
+
 
             insert += "<article>"
             insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
             insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
             insert += "<p>"+responseAsJson.results[i].overview+"</p>"
+            insert += '<button onclick="modalFunction('+responseAsJson.results[i].id+')">View More</button>'
             insert += "</article>"
+
 
         }
 
 
-        let insertDiv = document.getElementById('insert-popular')
+        let insertDiv = document.getElementById('insert-content')
         insertDiv.innerHTML = insert
     }
     )
@@ -118,27 +105,44 @@ document.getElementById('btn-popular').addEventListener('click', function(){
         console.log(err)
         let insert=""
         insert += "<h2>No search results for your term. Please Try Again</h2>"
-        let insertDiv = document.getElementById('insert-popular')
+        let insertDiv = document.getElementById('insert-content')
         insertDiv.innerHTML = insert
     })
+
+
+}
+
+//POPULAR
+document.getElementById('btn-popular').addEventListener('click', function(){
+    fetchURL(popularUrl)
 })
 
-//CLOSE POPULAR
-document.getElementById('btn-popular-close').addEventListener('click', function(){
-    let insert =""
-    let insertDiv = document.getElementById('insert-popular')
-    insertDiv.innerHTML = insert
-})
 
 //TOP RATED
 document.getElementById('btn-toprated').addEventListener('click', function(){
+    fetchURL(topratedUrl)
+})
 
-        //search = document.getElementById('searchTerm').value
-        topratedUrl = "https://api.themoviedb.org/3/movie/top_rated?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
-        //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg (poster path example)
 
-        console.log(topratedUrl)
-        fetch(topratedUrl, {
+//UPCOMING
+document.getElementById('btn-upcoming').addEventListener('click', function(){
+    fetchURL(upcomingUrl)
+})
+
+//NOW PLAYING
+document.getElementById('btn-nowplaying').addEventListener('click', function(){
+    fetchURL(nowPlayingUrl)
+})
+
+
+
+//modal
+function modalFunction (id) {
+
+    let urlModal = "https://api.themoviedb.org/3/movie/"+id+"?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US"
+
+
+        fetch(urlModal, {
             method: 'get'
         })
 
@@ -146,150 +150,79 @@ document.getElementById('btn-toprated').addEventListener('click', function(){
 
         .then (responseAsJson =>	 {
 
-
-            console.log(responseAsJson)
-
-            let insert =""
-
-            for(var i = 0; i < responseAsJson.results.length ; i++){
-
-                insert += "<article>"
-                insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
-                insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
-                insert += "<p>"+responseAsJson.results[i].overview+"</p>"
-                insert += "</article>"
-
-            }
+            let insertTitle =""
+            let insertImg =""
+            let insertOverview =""
 
 
-            let insertDiv = document.getElementById('insert-toprated')
-            insertDiv.innerHTML = insert
-        }
-        )
+            insertTitle +=     "<h2>"+responseAsJson.title+"</h2>"
+            insertImg +=       "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.poster_path      +"'"+ "alt=''>"
+            insertOverview +=  "<p>"+responseAsJson.overview+"</p>"
+
+
+            let insertDiv = document.getElementById('modalTitle')
+            insertDiv.innerHTML = insertTitle
+
+            insertDiv = document.getElementById('modalImage')
+            insertDiv.innerHTML = insertImg
+
+            insertDiv = document.getElementById('modalOverview')
+            insertDiv.innerHTML = insertOverview
+        })
 
         .catch(function(err) {
             console.log(err)
             let insert=""
             insert += "<h2>No search results for your term. Please Try Again</h2>"
-            let insertDiv = document.getElementById('insert-toprated')
+            let insertDiv = document.getElementById('modalTitle')
             insertDiv.innerHTML = insert
         })
-})
 
-//CLOSE TOP RATED
-document.getElementById('btn-toprated-close').addEventListener('click', function(){
-    let insert =""
-    let insertDiv = document.getElementById('insert-toprated')
-    insertDiv.innerHTML = insert
-})
+
+        $('#movieDetailModal').modal('show');
+
+}
 
 
 
-//UPCOMING
-document.getElementById('btn-upcoming').addEventListener('click', function(){
-
-                //search = document.getElementById('searchTerm').value
-                upcomingUrl = "https://api.themoviedb.org/3/movie/upcoming?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
-                //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg (poster path example)
-
-                console.log(upcomingUrl)
-                fetch(upcomingUrl, {
-                    method: 'get'
-                })
-
-                .then (response => response.json() )
-
-                .then (responseAsJson =>	 {
+// //CLOSE SEARCH
+// document.getElementById('btn-search-close').addEventListener('click', function(){
+//     let insert =""
+//     let insertDiv = document.getElementById('insert')
+//     insertDiv.innerHTML = insert
+// })
 
 
-                    console.log(responseAsJson)
 
-                    let insert =""
-
-                    for(var i = 0; i < responseAsJson.results.length ; i++){
-
-                        insert += "<article>"
-                        insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
-                        insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
-                        insert += "<p>"+responseAsJson.results[i].overview+"</p>"
-                        insert += "</article>"
-
-                    }
+//CLOSE POPULAR
+// document.getElementById('btn-popular-close').addEventListener('click', function(){
+//     let insert =""
+//     let insertDiv = document.getElementById('insert')
+//     insertDiv.innerHTML = insert
+// })
 
 
-                    let insertDiv = document.getElementById('insert-upcoming')
-                    insertDiv.innerHTML = insert
-                }
-                )
-
-                .catch(function(err) {
-                    console.log(err)
-                    let insert=""
-                    insert += "<h2>No search results for your term. Please Try Again</h2>"
-                    let insertDiv = document.getElementById('insert-upcoming')
-                    insertDiv.innerHTML = insert
-                })
-})
+// //CLOSE UPCOMING
+// document.getElementById('btn-upcoming-close').addEventListener('click', function(){
+//     let insert =""
+//     let insertDiv = document.getElementById('insert')
+//     insertDiv.innerHTML = insert
+// })
 
 
-//CLOSE UPCOMING
-document.getElementById('btn-upcoming-close').addEventListener('click', function(){
-    let insert =""
-    let insertDiv = document.getElementById('insert-upcoming')
-    insertDiv.innerHTML = insert
-})
 
-//NOW PLAYING
-document.getElementById('btn-nowplaying').addEventListener('click', function(){
-
-    //search = document.getElementById('searchTerm').value
-    nowPlayingUrl = "https://api.themoviedb.org/3/movie/now_playing?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
-    //https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg (poster path example)
-    //console.log(search)
-    console.log(nowPlayingUrl)
-    fetch(nowPlayingUrl, {
-    	method: 'get'
-    })
-
-    .then (response => response.json() )
-
-    .then (responseAsJson =>	 {
+// //CLOSE TOP RATED
+// document.getElementById('btn-toprated-close').addEventListener('click', function(){
+//     let insert =""
+//     let insertDiv = document.getElementById('insert')
+//     insertDiv.innerHTML = insert
+// })
 
 
-        console.log(responseAsJson)
 
-        let insert =""
-
-        for(var i = 0; i < responseAsJson.results.length ; i++){
-
-            insert += "<article>"
-            insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
-            insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
-            insert += "<p>"+responseAsJson.results[i].overview+"</p>"
-            insert += "</article>"
-
-        }
-
-
-        let insertDiv = document.getElementById('insert-nowplaying')
-        insertDiv.innerHTML = insert
-    }
-    )
-
-    .catch(function(err) {
-    	console.log(err)
-        let insert=""
-        insert += "<h2>No search results for your term. Please Try Again</h2>"
-        let insertDiv = document.getElementById('insert-nowplaying')
-        insertDiv.innerHTML = insert
-    })
-
-})
-
-
-//CLOSE NOW PLAYING
-document.getElementById('btn-nowplaying-close').addEventListener('click', function(){
-    let insert =""
-    let insertDiv = document.getElementById('insert-nowplaying')
-    insertDiv.innerHTML = insert
-})
+// //CLOSE NOW PLAYING
+// document.getElementById('btn-nowplaying-close').addEventListener('click', function(){
+//     let insert =""
+//     let insertDiv = document.getElementById('insert')
+//     insertDiv.innerHTML = insert
+// })
