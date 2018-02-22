@@ -153,11 +153,25 @@ function modalFunction (id) {
             let insertTitle =""
             let insertImg =""
             let insertOverview =""
+            let insertTagline =""
+            let insertGenre =""
+            let insertLength =""
+            let insertVote =""
 
 
-            insertTitle +=     "<h2>"+responseAsJson.title+"</h2>"
-            insertImg +=       "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.poster_path      +"'"+ "alt=''>"
+            insertTitle +=     "<h1>"+responseAsJson.title+"</h1>"
+            insertImg +=       "<img src='https://image.tmdb.org/t/p/w342" + responseAsJson.poster_path      +"'"+ "alt=''>"
             insertOverview +=  "<p>"+responseAsJson.overview+"</p>"
+            insertTagline += "<h2>"+responseAsJson.tagline+"</h2>"
+            insertLength += "<p>"+responseAsJson.runtime+" Minutes</p>"
+            insertVote += "<p>"+responseAsJson.vote_average+" out of 10</p>"
+
+            for(var i = 0; i < responseAsJson.genres.length ; i++){
+
+
+                insertGenre += "<p>"+ responseAsJson.genres[i].name +"</p>"
+
+            }
 
 
             let insertDiv = document.getElementById('modalTitle')
@@ -168,6 +182,20 @@ function modalFunction (id) {
 
             insertDiv = document.getElementById('modalOverview')
             insertDiv.innerHTML = insertOverview
+
+            insertDiv = document.getElementById('modalTagline')
+            insertDiv.innerHTML = insertTagline
+
+            insertDiv = document.getElementById('modalGenres')
+            insertDiv.innerHTML = insertGenre
+
+            insertDiv = document.getElementById('modalLength')
+            insertDiv.innerHTML = insertLength
+
+            insertDiv = document.getElementById('modalVote')
+            insertDiv.innerHTML = insertVote
+
+            $('.modal-backdrop').css({'background-image':'url(https://image.tmdb.org/t/p/w1280' + responseAsJson.backdrop_path + ')' })
         })
 
         .catch(function(err) {
@@ -179,50 +207,6 @@ function modalFunction (id) {
         })
 
 
-        $('#movieDetailModal').modal('show');
+        $('#movieDetailModal').modal('show')
 
 }
-
-
-
-// //CLOSE SEARCH
-// document.getElementById('btn-search-close').addEventListener('click', function(){
-//     let insert =""
-//     let insertDiv = document.getElementById('insert')
-//     insertDiv.innerHTML = insert
-// })
-
-
-
-//CLOSE POPULAR
-// document.getElementById('btn-popular-close').addEventListener('click', function(){
-//     let insert =""
-//     let insertDiv = document.getElementById('insert')
-//     insertDiv.innerHTML = insert
-// })
-
-
-// //CLOSE UPCOMING
-// document.getElementById('btn-upcoming-close').addEventListener('click', function(){
-//     let insert =""
-//     let insertDiv = document.getElementById('insert')
-//     insertDiv.innerHTML = insert
-// })
-
-
-
-// //CLOSE TOP RATED
-// document.getElementById('btn-toprated-close').addEventListener('click', function(){
-//     let insert =""
-//     let insertDiv = document.getElementById('insert')
-//     insertDiv.innerHTML = insert
-// })
-
-
-
-// //CLOSE NOW PLAYING
-// document.getElementById('btn-nowplaying-close').addEventListener('click', function(){
-//     let insert =""
-//     let insertDiv = document.getElementById('insert')
-//     insertDiv.innerHTML = insert
-// })
