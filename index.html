@@ -15,18 +15,21 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
+                <div class="col-2 logo">
+                    <img src="assets/moviedb.png" alt="">
+                </div>
+                <div class="col-10">
 
                     <form id="movie-form"  method="post">
-                        <input type="text" placeholder="search for a movie..." id="searchTerm" name="search">
-                        <button id="btn-search" type="submit" name="button" value="click">Search Movies</button>
+                        <input type="text" placeholder="Search for a movie..." id="searchTerm" name="search">
+                        <button id="btn-search" type="submit" name="button" value="click"></button>
                         <!-- <button id="btn-search-close" type="button" name="button">Close</button> -->
                     </form>
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-2">
+                <div id="section-btns" class="col-2">
                     <button id="btn-popular" type="button" name="button">Popular</button>
                     <!-- <button id="btn-popular-close" type="button" name="button">Close</button> -->
                     <button id="btn-toprated" type="button" name="button">Top Rated</button>
@@ -35,11 +38,17 @@
                     <button id="btn-upcoming" type="button" name="button">Upcoming</button>
                     <!-- <button id="btn-upcoming-close" type="button" name="button">Close</button> -->
 
-                    <button id="btn-nowplaying" type="button" name="button">NOW PLAYING</button>
+                    <button id="btn-nowplaying" type="button" name="button">Now Playing</button>
                     <!-- <button id="btn-nowplaying-close" type="button" name="button">Close</button> -->
                 </div>
                 <div class="col-10">
-                    <div id="insert-content"></div>
+                    <div class="row">
+                        <div id="insert-heading"></div>
+                    </div>
+                    <div class="row">
+                        <div id="insert-content"></div>
+                    </div>
+
                 </div>
 
             </div>

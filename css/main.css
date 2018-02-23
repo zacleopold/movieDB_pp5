@@ -1,10 +1,19 @@
 body {
     display: flex;
     flex-flow: column nowrap;
+    background-color: #f2f2f2;
+    font-family: 'Arial';
+    color: black;
+}
+
+#section-btns {
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 
 
 }
-
 
 .modal-backdrop {
    background-image: url(#);
@@ -26,25 +35,78 @@ body {
     to   { opacity: 1; }
 }
 
+div > img{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px;
+
+}
+
+.displayTitle {
+    display: flex;
+    flex-flow: row wrap;
+    width: 185px;
+    padding-top: 10px;
+
+
+}
 
 #modalTagline, #modalOverview {
 
-    
+
+
+}
+
+.results-title {
+    margin-left: 20px;
+    margin-bottom: 40px;
+
 
 }
 
 #searchTerm {
+    font: black;
+    height:40px;
+    width: 80%;
+    font-size:20px;
+    padding-left:5px;
+    background-color: #f2f2f2;
+    border: none;
+    border-bottom: 2px solid black;
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
-height:40px;
-  width: 400px;
-  font-size:20px;
 
-  padding-left:5px;
 
 }
 
-#btn-search {
+#searchTerm:focus {
 
+    outline:none;
+
+
+
+}
+
+#searchTerm::placeholder {
+
+    color:black;
+    font-size: 20px;
+
+
+
+}
+#btn-search {
+    background-color: #f2f2f2;
+    background-image: url("../assets/SearchIcon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 1px;
+    width: 1px;
+    border: none;
+    /* margin-left: 50px;
+    margin-top: 20px; */
     visibility: hidden;
 }
 #search {
@@ -61,22 +123,26 @@ height:40px;
     display:flex;
     flex-flow: row wrap;
 
+
 }
 
 button {
-    display:block;
+    /* display:block; */
+    display: flex;
+    flex-flow: row wrap;
     width:150px;
     height:150px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 150px;
-	margin:0 10px 10px 0;
+    align-items: center;
+    justify-content:  center;
+
+    /* line-height: 150px; */
+	 margin:0 10px 10px 0;
 	padding:10px 21px;
-	text-transform:uppercase;
+	/* text-transform:uppercase; */
 	font-family:'Arial';
-	font-weight:400;
-	font-size:16px;
-    text-transform: uppercase;
+	/* font-weight:400; */
+	font-size:20px;
+    /* text-transform: uppercase; */
 	color:white; /*#3e3e3e;*/
 	background:#53b7e8; /*#7cb289;*/
 	border-bottom:1px solid #343434;
@@ -84,17 +150,16 @@ button {
 	-moz-transition: all 0.4s ease-in-out;
 	-webkit-transition: all 0.4s ease-in-out;
 	-o-transition: all 0.4s ease-in-out;
-    float: left;
+    /* float: left; */
 }
 
 
 article {
-
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    border: 1px solid black;
-
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 185px;
+    padding: 0 0 30px 0;
+    margin: 0 20px 0 20px;
 }

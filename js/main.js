@@ -26,6 +26,7 @@ document.getElementById('btn-search').addEventListener('click', function(){
 
     searchTerm = document.getElementById('searchTerm').value
     searchUrl = "https://api.themoviedb.org/3/search/movie?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&query="+ searchTerm +"&page=1&include_adult=false"
+    let page = 1
 
     fetch(searchUrl, {
         method: 'get'
@@ -39,21 +40,26 @@ document.getElementById('btn-search').addEventListener('click', function(){
         console.log(responseAsJson)
 
         let insert =""
+        let insertHeading = ""
+
+        insertHeading += "<h2 class='results-title'>Search Results for '"+searchTerm+"'</h2>"
 
         for(var i = 0; i < responseAsJson.results.length ; i++){
 
             insert += "<article>"
-            insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
-            insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
-            insert += "<p>"+responseAsJson.results[i].overview+"</p>"
-            insert += '<button onclick="modalFunction('+responseAsJson.results[i].id+')">View More</button>'
+            insert += "<a href='#' onclick='modalFunction("+responseAsJson.results[i].id+")'><img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''></a>"
+            insert += "<p class='displayTitle'>"+responseAsJson.results[i].title+"</p>"
+            // insert += "<p>"+responseAsJson.results[i].overview+"</p>"
+            // insert += '<button onclick="modalFunction('+responseAsJson.results[i].id+')">View More</button>'
             insert += "</article>"
 
         }
 
+        let insertDiv1 = document.getElementById('insert-heading')
+        insertDiv1.innerHTML = insertHeading
 
-        let insertDiv = document.getElementById('insert-content')
-        insertDiv.innerHTML = insert
+        let insertDiv2 = document.getElementById('insert-content')
+        insertDiv2.innerHTML = insert
     }
     )
 
@@ -61,8 +67,8 @@ document.getElementById('btn-search').addEventListener('click', function(){
         console.log(err)
         let insert=""
         insert += "<h2>No search results for your term. Please Try Again</h2>"
-        let insertDiv = document.getElementById('insert-content')
-        insertDiv.innerHTML = insert
+        let insertDiv2 = document.getElementById('insert-content')
+        insertDiv2.innerHTML = insert
     })
 
     document.getElementById('searchTerm').value = ""
@@ -70,7 +76,9 @@ document.getElementById('btn-search').addEventListener('click', function(){
 
 
 
-function fetchURL (url) {
+
+function fetchURL (url, section) {
+    let sectionTitle = section
 
     fetch(url, {
         method: 'get'
@@ -81,23 +89,28 @@ function fetchURL (url) {
     .then (responseAsJson =>	 {
 
         let insert =""
+        let insertHeading =""
+
+        insertHeading += "<h2 class='results-title'>"+ sectionTitle +"</h2>"
 
         for(var i = 0; i < responseAsJson.results.length ; i++){
 
 
             insert += "<article>"
-            insert += "<img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''>"
-            insert += "<h2>"+responseAsJson.results[i].title+"</h2>"
-            insert += "<p>"+responseAsJson.results[i].overview+"</p>"
-            insert += '<button onclick="modalFunction('+responseAsJson.results[i].id+')">View More</button>'
+            insert += "<a href='#' onclick='modalFunction("+responseAsJson.results[i].id+")'><img src='https://image.tmdb.org/t/p/w185" + responseAsJson.results[i].poster_path      +"'"+ "alt=''></a>"
+            insert += "<p class='displayTitle'>"+responseAsJson.results[i].title+"</p>"
+            // insert += "<p>"+responseAsJson.results[i].overview+"</p>"
+            // insert += '<button onclick="modalFunction('+responseAsJson.results[i].id+')">View More</button>'
             insert += "</article>"
 
 
         }
 
+        let insertDiv1 = document.getElementById('insert-heading')
+        insertDiv1.innerHTML = insertHeading
 
-        let insertDiv = document.getElementById('insert-content')
-        insertDiv.innerHTML = insert
+        let insertDiv2 = document.getElementById('insert-content')
+        insertDiv2.innerHTML = insert
     }
     )
 
@@ -105,8 +118,8 @@ function fetchURL (url) {
         console.log(err)
         let insert=""
         insert += "<h2>No search results for your term. Please Try Again</h2>"
-        let insertDiv = document.getElementById('insert-content')
-        insertDiv.innerHTML = insert
+        let insertDiv2 = document.getElementById('insert-content')
+        insertDiv2.innerHTML = insert
     })
 
 
@@ -114,24 +127,28 @@ function fetchURL (url) {
 
 //POPULAR
 document.getElementById('btn-popular').addEventListener('click', function(){
-    fetchURL(popularUrl)
+    let sectionTitle = "Popular"
+    fetchURL(popularUrl, sectionTitle)
 })
 
 
 //TOP RATED
 document.getElementById('btn-toprated').addEventListener('click', function(){
-    fetchURL(topratedUrl)
+    let sectionTitle = "Top Rated"
+    fetchURL(topratedUrl, sectionTitle)
 })
 
 
 //UPCOMING
 document.getElementById('btn-upcoming').addEventListener('click', function(){
-    fetchURL(upcomingUrl)
+    let sectionTitle = "Upcoming"
+    fetchURL(upcomingUrl, sectionTitle)
 })
 
 //NOW PLAYING
 document.getElementById('btn-nowplaying').addEventListener('click', function(){
-    fetchURL(nowPlayingUrl)
+    let sectionTitle = "Now Playing"
+    fetchURL(nowPlayingUrl, sectionTitle)
 })
 
 
