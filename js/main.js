@@ -11,8 +11,6 @@ document.getElementById('movie-form').onsubmit = function(){
 
 }
 
-
-
 let searchTerm
 let searchUrl
 let popularUrl = "https://api.themoviedb.org/3/movie/popular?api_key=da4e154ebe86b26d95e75489941adefb&language=en-US&page=1"
@@ -65,10 +63,17 @@ document.getElementById('btn-search').addEventListener('click', function(){
 
     .catch(function(err) {
         console.log(err)
+        let insertHeading = ""
         let insert=""
+
+        insertHeading += "<h2 class='results-title'>Search Results for '"+searchTerm+"'</h2>"
         insert += "<h2>No search results for your term. Please Try Again</h2>"
-        let insertDiv2 = document.getElementById('insert-content')
-        insertDiv2.innerHTML = insert
+
+        let insertDiv1 = document.getElementById('insert-heading')
+        insertDiv1.innerHTML = insertHeading
+
+        let insertDiv = document.getElementById('insert-content')
+        insertDiv.innerHTML = insert
     })
 
     document.getElementById('searchTerm').value = ""
@@ -181,7 +186,7 @@ function modalFunction (id) {
             insertOverview +=  "<p>"+responseAsJson.overview+"</p>"
             insertTagline += "<h2>"+responseAsJson.tagline+"</h2>"
             insertLength += "<p>"+responseAsJson.runtime+" Minutes</p>"
-            insertVote += "<p>"+responseAsJson.vote_average+" out of 10</p>"
+            insertVote += "<p><span class='vote'>"+responseAsJson.vote_average+"</span><p>of</p> <span class='vote'>10</span></p>"
 
             for(var i = 0; i < responseAsJson.genres.length ; i++){
 

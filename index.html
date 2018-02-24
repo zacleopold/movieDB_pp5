@@ -4,11 +4,8 @@
     <head>
         <meta charset="utf-8">
         <title>TMDb</title>
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
         <link rel="stylesheet"  href="css/main.css">
-
     </head>
 
     <body>
@@ -19,7 +16,6 @@
                     <img src="assets/moviedb.png" alt="">
                 </div>
                 <div class="col-10">
-
                     <form id="movie-form"  method="post">
                         <input type="text" placeholder="Search for a movie..." id="searchTerm" name="search">
                         <button id="btn-search" type="submit" name="button" value="click"></button>
@@ -28,18 +24,17 @@
                 </div>
 
             </div>
+
             <div class="row">
                 <div id="section-btns" class="col-2">
+                    <button id="btn-nowplaying" type="button" name="button">Now Playing</button>
+
                     <button id="btn-popular" type="button" name="button">Popular</button>
-                    <!-- <button id="btn-popular-close" type="button" name="button">Close</button> -->
+
                     <button id="btn-toprated" type="button" name="button">Top Rated</button>
-                    <!-- <button id="btn-toprated-close" type="button" name="button">Close</button> -->
 
                     <button id="btn-upcoming" type="button" name="button">Upcoming</button>
-                    <!-- <button id="btn-upcoming-close" type="button" name="button">Close</button> -->
 
-                    <button id="btn-nowplaying" type="button" name="button">Now Playing</button>
-                    <!-- <button id="btn-nowplaying-close" type="button" name="button">Close</button> -->
                 </div>
                 <div class="col-10">
                     <div class="row">
@@ -48,109 +43,97 @@
                     <div class="row">
                         <div id="insert-content"></div>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="movieDetailModal" tabindex="-1" role="dialog">
-  <div class="modal-lg modal-dialog" role="document">
-    <div class="modal-content">
-    <!-- Header -->
-      <div class="modal-header">
-<div class="container-fluid">
-    <div class="row">
-        <div class="modal-title" id="exampleModalLabel"><div id="modalTitle"></div></div>
-    </div>
-</div>
+        <!-- Modal -->
+        <div class="modal fade" id="movieDetailModal" tabindex="-1" role="dialog">
+          <div class="modal-lg modal-dialog" role="document">
+            <div class="modal-content">
+
+              <!-- Header -->
+              <div class="modal-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="modal-title" id="exampleModalLabel"><div id="modalTitle"></div></div>
+                    </div>
+                </div>
 
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <button type="button" class="close" data-dismiss="modal" >
+                  <span aria-hidden="true">&times;</span>
+                </button>
 
 
-      </div>
+              </div>
 
-      <!-- Body -->
-      <div class="modal-body">
-
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-6">
-                      <div id="modalImage"></div>
-                  </div>
-                  <div class="col-6">
+              <!-- Body -->
+              <div class="modal-body">
+                  <div class="container-fluid">
                       <div class="row">
-                          <div id="modalTagline"></div>
-                      </div>
-                      <div class="row">
-                         <div id="modalOverview"></div>
+                          <div id="modal-moviePoster" class="col-6">
+                              <div id="modalImage"></div>
+                          </div>
+                          <div id="modal-TagOver" class="col-6">
+                              <div class="row">
+                                  <div id="modalTagline"></div>
+                              </div>
+                              <div class="row">
+                                 <div id="modalOverview"></div>
+                              </div>
+
+                          </div>
                       </div>
 
                   </div>
               </div>
 
-          </div>
+              <!-- Footer -->
+              <div class="modal-footer">
+                  <div class="container-fluid">
+                      <div id="modal-FooterContainer" class="row">
+                          <div class="col-4">
+                              <div class="row footer-info">
+                                  <h3 id="genre">Genres</h3>
+                              </div>
+                              <div class="row footer-info">
+                                  <div id="modalGenres"></div>
+                              </div>
 
+                          </div>
+                          <div class="col-4">
+                              <div  class="row footer-info">
+                                  <h3 id="rating">Rating</h3>
+                              </div>
+                              <div class="row footer-info" >
+                                  <div id="modalVote"></div>
+                              </div>
 
+                          </div>
+                          <div class="col-4">
+                              <div  class="row footer-info">
+                                 <h3 id="length">Length</h3>
+                              </div>
+                              <div class="row footer-info">
+                                  <div id="modalLength"></div>
+                              </div>
 
-
-      </div>
-
-      <!-- Footer -->
-      <div class="modal-footer">
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-4">
-                      <div class="row">
-                          <h3>Genres</h3>
+                          </div>
                       </div>
-                      <div class="row">
-                          <div id="modalGenres"></div>
-                      </div>
-
-                  </div>
-                  <div class="col-4">
-                      <div class="row">
-                          <h3>Rating</h3>
-                      </div>
-                      <div class="row">
-                          <div id="modalVote"></div>
-                      </div>
-
-
-                  </div>
-                  <div class="col-4">
-                      <div class="row">
-                         <h3>Movie Length</h3>
-                      </div>
-                      <div class="row">
-                          <div id="modalLength"></div>
-                      </div>
-
                   </div>
               </div>
+            </div>
           </div>
-
-
-
-
-
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
 
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src='js/main.js'></script>
+        
     </body>
   </html>
